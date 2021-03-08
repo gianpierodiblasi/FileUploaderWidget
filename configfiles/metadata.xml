@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Entities>
+  <ExtensionPackages>
+    <ExtensionPackage 
+      name="UploadWidget"
+      packageVersion="1.0.0"
+      vendor="Accenture Italy - Industry X"
+      description="Extension to manage uploads"
+      minimumThingWorxVersion="8.3.0"
+      dependsOn=""> 
+    </ExtensionPackage>
+  </ExtensionPackages>
+  
+  <Widgets>
+    <Widget name="fileuploader">
+      <UIResources>
+        <FileResource description="" file="fileuploader.ide.js" isDevelopment="true" isRuntime="false" type="JS"/>
+        <FileResource description="" file="fileuploader.ide.css" isDevelopment="true" isRuntime="false" type="CSS"/>
+        <FileResource description="" file="fileuploader.runtime.js" isDevelopment="false" isRuntime="true" type="JS"/>
+        <FileResource description="" file="fileuploader.runtime.css" isDevelopment="false" isRuntime="true" type="CSS"/>
+      </UIResources>
+    </Widget>
+    <Widget name="imageloader">
+      <UIResources>
+        <FileResource description="" file="imageloader.ide.js" isDevelopment="true" isRuntime="false" type="JS"/>
+        <FileResource description="" file="imageloader.ide.css" isDevelopment="true" isRuntime="false" type="CSS"/>
+        <FileResource description="" file="imageloader.runtime.js" isDevelopment="false" isRuntime="true" type="JS"/>
+        <FileResource description="" file="imageloader.runtime.css" isDevelopment="false" isRuntime="true" type="CSS"/>
+      </UIResources>
+    </Widget>
+  </Widgets>
+</Entities>

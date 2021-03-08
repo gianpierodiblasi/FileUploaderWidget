@@ -1,0 +1,70 @@
+<Entities>
+  <LocalizationTables>
+    <LocalizationTable aspect.isCreatable="false" aspect.isEditableSystemObject="true" description="Default localization table" documentationContent="" homeMashup="" languageCommon="English" languageNative="English" name="Default" projectName="" tags="">
+      <ConfigurationTables>
+        <ConfigurationTable description="Localization tokens and usage" isMultiRow="true" name="LocalizationTokens" ordinal="0">
+          <DataShape>
+            <FieldDefinitions>
+              <FieldDefinition aspect.friendlyName="Translation context" baseType="STRING" description="Translation context" name="context" ordinal="3"/>
+              <FieldDefinition aspect.friendlyName="Token name" baseType="STRING" description="Token name" name="name" ordinal="0"/>
+              <FieldDefinition aspect.friendlyName="Token usage" baseType="STRING" description="Token usage" name="usage" ordinal="2"/>
+              <FieldDefinition aspect.friendlyName="Localized value" baseType="STRING" description="Localized value" name="value" ordinal="1"/>
+            </FieldDefinitions>
+          </DataShape>
+          <Rows>
+            <Row>
+              <context/>
+              <name><![CDATA[UploadWidget.imageloader.dragorclick]]></name>
+              <usage/>
+              <value>Drag your image here or click in this area</value>
+            </Row>
+          </Rows>
+        </ConfigurationTable>
+      </ConfigurationTables>
+    </LocalizationTable>
+    <LocalizationTable aspect.isCreatable="false" aspect.isEditableSystemObject="true" description="it localization table" documentationContent="" homeMashup="" languageCommon="Italian" languageNative="Italiano" name="it" projectName="" tags="">
+      <ConfigurationTables>
+        <ConfigurationTable description="Localization tokens and usage" isMultiRow="true" name="LocalizationTokens" ordinal="0">
+          <DataShape>
+            <FieldDefinitions>
+              <FieldDefinition aspect.friendlyName="Translation context" baseType="STRING" description="Translation context" name="context" ordinal="3"/>
+              <FieldDefinition aspect.friendlyName="Token name" baseType="STRING" description="Token name" name="name" ordinal="0"/>
+              <FieldDefinition aspect.friendlyName="Token usage" baseType="STRING" description="Token usage" name="usage" ordinal="2"/>
+              <FieldDefinition aspect.friendlyName="Localized value" baseType="STRING" description="Localized value" name="value" ordinal="1"/>
+            </FieldDefinitions>
+          </DataShape>
+          <Rows>
+            <Row>
+              <context/>
+              <name><![CDATA[UploadWidget.imageloader.dragorclick]]></name>
+              <usage/>
+              <value>Trascina la tua immagine qui o fai click in quest'area</value>
+            </Row>
+          </Rows>
+        </ConfigurationTable>
+      </ConfigurationTables>
+    </LocalizationTable>
+    <LocalizationTable aspect.isCreatable="false" aspect.isEditableSystemObject="true" description="de localization table" documentationContent="" homeMashup="" languageCommon="German" languageNative="Deutsch" name="de" projectName="" tags="">
+      <ConfigurationTables>
+        <ConfigurationTable description="Localization tokens and usage" isMultiRow="true" name="LocalizationTokens" ordinal="0">
+          <DataShape>
+            <FieldDefinitions>
+              <FieldDefinition aspect.friendlyName="Translation context" baseType="STRING" description="Translation context" name="context" ordinal="3"/>
+              <FieldDefinition aspect.friendlyName="Token name" baseType="STRING" description="Token name" name="name" ordinal="0"/>
+              <FieldDefinition aspect.friendlyName="Token usage" baseType="STRING" description="Token usage" name="usage" ordinal="2"/>
+              <FieldDefinition aspect.friendlyName="Localized value" baseType="STRING" description="Localized value" name="value" ordinal="1"/>
+            </FieldDefinitions>
+          </DataShape>
+          <Rows>
+            <Row>
+              <context/>
+              <name><![CDATA[UploadWidget.imageloader.dragorclick]]></name>
+              <usage/>
+              <value>Ziehen sie ihr bild hierher oder klicken sie in diesen bereich</value>
+            </Row>
+          </Rows>
+        </ConfigurationTable>
+      </ConfigurationTables>
+    </LocalizationTable>
+  </LocalizationTables>
+</Entities>
