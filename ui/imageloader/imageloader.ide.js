@@ -40,6 +40,7 @@ TW.IDE.Widgets.imageloader = function () {
 
   this.widgetServices = function () {
     return {
+      'Clear': {}
     };
   };
 

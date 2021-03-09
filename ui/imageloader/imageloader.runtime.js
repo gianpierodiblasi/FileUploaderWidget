@@ -121,4 +121,13 @@ TW.Runtime.Widgets.imageloader = function () {
       }
     }
   }
+
+  this.serviceInvoked = function (serviceName) {
+    if (serviceName === 'Clear') {
+      $('.widget-imageloader-div-' + uid).css("background-image", "none");
+      $('.widget-imageloader-span-' + uid).css("visibility", "visible");
+
+      thisWidget.setProperty('image', '');
+    }
+  };
 };

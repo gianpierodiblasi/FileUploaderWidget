@@ -3,7 +3,7 @@
   <ExtensionPackages>
     <ExtensionPackage 
       name="UploadWidget"
-      packageVersion="1.0.0"
+      packageVersion="1.1.0"
       vendor="Accenture Italy - Industry X"
       description="Extension to manage uploads"
       minimumThingWorxVersion="8.3.0"
