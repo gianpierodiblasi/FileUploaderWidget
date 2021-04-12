@@ -13,6 +13,7 @@
   <property name="localization"   value="Localization" /> 
   <property name="src.dir"        value="${basedir}/src" /> 
   <property name="build.dir"      value="${user.home}/builds/${ant.project.name}/bin" /> 
+  <property name="minify.dir"     value="${user.home}/builds/${ant.project.name}/minify" /> 
   <property name="config.dir"     value="${basedir}/configfiles" /> 
   <property name="ui.dir"         value="${basedir}/${ui}" /> 
   <property name="lib.dir"        value="${basedir}/${lib}" /> 
@@ -30,7 +31,8 @@
  
   <!--  Extension file info --> 
   <property name="zip.file.name" value="${ant.project.name}.zip" /> 
- 
+  <property name="minify-zip.file.name" value="${ant.project.name}-min.zip" /> 
+  
   <tstamp> 
     <format property="NOW" pattern="yyyy-MM-dd HH:mm:ss" /> 
   </tstamp> 
@@ -45,10 +47,10 @@
   <target name="clean"> 
     <delete dir="${build.dir}" /> 
     <delete dir="${zip.dir}" /> 
+    <delete dir="${minify.dir}" /> 
   </target> 
  
   <target name="init" depends="clean"> 
- 
     <mkdir dir="${build.dir}" /> 
  
     <copy includeemptydirs="false" todir="${build.dir}"> 
@@ -57,7 +59,6 @@
         <exclude name="**/*.java" /> 
       </fileset> 
     </copy> 
- 
   </target> 
  
   <target name="build-source" depends="init"> 
@@ -95,6 +96,20 @@
     </jar> 
   </target> 
  
+  <target name="copy-minify">
+    <copy todir="${minify.dir}">
+      <fileset dir="${basedir}" includes="${ui}/**/*.min.*" excludes="${ui}/**/jslibrary/*.*"/>
+      <fileset dir="${basedir}" includes="${ui}/**/*.png" />
+    </copy>  
+    
+    <move todir="${minify.dir}">
+      <fileset dir="${minify.dir}" includes="${ui}/**/*.min.*" />
+      <mapper>
+        <mapper type="regexp" from="(.*).min.(.*)" to="\1.\2" />
+      </mapper>
+    </move>
+  </target>
+  
   <target name="package-extension" depends="build-jars"> 
     <zip destfile="${zip.dir}/${zip.file.name}"> 
       <mappedresources> 
@@ -106,13 +121,30 @@
  
       <zipfileset dir="${basedir}" includes="${entities}/**/*.xml" /> 
       <zipfileset dir="${basedir}" includes="${localization}/**/*.json" /> 
-      <zipfileset dir="${basedir}" includes="${ui}/**/*.*" /> 
+      <zipfileset dir="${basedir}" includes="${ui}/**/*.*" excludes="${ui}/**/*.min.*,${ui}/**/jslibrary/*.*" /> 
+      <zipfileset dir="${basedir}" includes="${ui}/**/jslibrary/*.*" /> 
       <zipfileset dir="${lib.dir}" includes="**/*.jar" prefix="${package.common.lib.dir}/"/> 
- 
     </zip> 
   </target> 
+   
+  <target name="package-extension-minify" depends="build-jars,copy-minify"> 
+    <zip destfile="${zip.dir}/${minify-zip.file.name}"> 
+      <mappedresources> 
+        <fileset dir="${build.dir}" includes="${extension.jar}" /> 
+        <globmapper from="*" to="${package.common.lib.dir}/*" /> 
+      </mappedresources> 
  
-  <target name="build" depends="package-extension"> 
+      <zipfileset dir="${config.dir}" includes="metadata.xml" /> 
+ 
+      <zipfileset dir="${basedir}" includes="${entities}/**/*.xml" /> 
+      <zipfileset dir="${basedir}" includes="${localization}/**/*.json" />
+      <zipfileset dir="${minify.dir}" includes="**/*.*" /> 
+      <zipfileset dir="${basedir}" includes="${ui}/**/jslibrary/*.*" /> 
+      <zipfileset dir="${lib.dir}" includes="**/*.jar" prefix="${package.common.lib.dir}/"/> 
+    </zip> 
+  </target> 
+    
+  <target name="build" depends="package-extension,package-extension-minify"> 
     <echo message="Building ${ant.project.name} extension package..."/> 
   </target> 
  
