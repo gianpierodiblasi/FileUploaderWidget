@@ -109,14 +109,12 @@ TW.Runtime.Widgets.fileuploader = function () {
 
   function purgeFiles(files) {
     var maximumFileSize = thisWidget.getProperty('maximumFileSize');
-    var allowedFileTypes = thisWidget.getProperty('allowedFileTypes').split(",").filter(function (value) {
-      return !!value;
-    });
+    var allowedFileTypes = thisWidget.getProperty('allowedFileTypes').toLowerCase();
 
     filesToUpload = [];
     for (var index = 0; index < files.length; index++) {
       var sizeOk = maximumFileSize <= 0 || files[index].size / (1024 * 1024) <= maximumFileSize;
-      var typeOk = allowedFileTypes.length === 0 || allowedFileTypes.indexOf('.' + files[index].name.split('.').pop()) !== -1;
+      var typeOk = allowedFileTypes.length === 0 || allowedFileTypes.indexOf('.' + files[index].name.split('.').pop().toLowerCase()) !== -1;
       if (sizeOk && typeOk) {
         filesToUpload.push(files[index]);
       }

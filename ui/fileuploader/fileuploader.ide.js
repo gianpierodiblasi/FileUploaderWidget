@@ -102,7 +102,7 @@ TW.IDE.Widgets.fileuploader = function () {
           isBindingTarget: true,
           isVisible: true,
           'isEditable': true,
-          description: "The allowed file types separated by commas and starting with a dot, eg. '.gif, .jpeg, .png', empty string to set no constraint on the type",
+          description: "The allowed file types separated by commas and starting with a dot, eg. '.gif,.jpeg,.png', empty string to set no constraint on the type",
           defaultValue: '',
           baseType: 'STRING'
         },

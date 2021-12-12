@@ -66,7 +66,7 @@ TW.Runtime.Widgets.imageloader = function () {
       console.log("ImageLoader - file = " + file.name);
     }
 
-    if (allowedFileTypes.indexOf('.' + file.name.split('.').pop()) !== -1) {
+    if (allowedFileTypes.indexOf('.' + file.name.split('.').pop().toLowerCase()) !== -1) {
       var fileReader = new FileReader();
       fileReader.onload = function () {
         if (debugMode) {
