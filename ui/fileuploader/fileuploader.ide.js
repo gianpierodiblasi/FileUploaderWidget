@@ -1,7 +1,7 @@
 /* global TW */
 TW.IDE.Widgets.fileuploader = function () {
   this.widgetIconUrl = function () {
-    return '../Common/extensions/UploadWidget/ui/fileuploader/upload.png';
+    return '../Common/extensions/FileUploaderWidget/ui/fileuploader/upload.png';
   };
 
   this.widgetProperties = function () {

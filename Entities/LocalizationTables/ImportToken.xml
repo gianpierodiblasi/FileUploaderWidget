@@ -14,9 +14,9 @@
           <Rows>
             <Row>
               <context/>
-              <name><![CDATA[UploadWidget.imageloader.dragorclick]]></name>
+              <name><![CDATA[FileUploaderWidget.fileuploader.dragorclick]]></name>
               <usage/>
-              <value>Drag your image here or click in this area</value>
+              <value>Drag your files here or click in this area</value>
             </Row>
           </Rows>
         </ConfigurationTable>
@@ -36,9 +36,9 @@
           <Rows>
             <Row>
               <context/>
-              <name><![CDATA[UploadWidget.imageloader.dragorclick]]></name>
+              <name><![CDATA[FileUploaderWidget.fileuploader.dragorclick]]></name>
               <usage/>
-              <value>Trascina la tua immagine qui o fai click in quest'area</value>
+              <value>Trascina i tuoi file qui o fai click in quest'area</value>
             </Row>
           </Rows>
         </ConfigurationTable>
@@ -58,9 +58,9 @@
           <Rows>
             <Row>
               <context/>
-              <name><![CDATA[UploadWidget.imageloader.dragorclick]]></name>
+              <name><![CDATA[FileUploaderWidget.fileuploader.dragorclick]]></name>
               <usage/>
-              <value>Ziehen sie ihr bild hierher oder klicken sie in diesen bereich</value>
+              <value>Ziehen sie ihre dateien hierher oder klicken sie in diesen bereich</value>
             </Row>
           </Rows>
         </ConfigurationTable>
