@@ -7,7 +7,7 @@ TW.Runtime.Widgets.fileuploader = function () {
   var uploadedSize;
   var totalSize;
   var filesToUpload;
-  var dragorclickToken = TW.Runtime.convertLocalizableString("[[FileUploaderWidget.fileuploader.dragorclick]]", "Drag your image here or click in this area");
+  var dragorclickToken = TW.Runtime.convertLocalizableString("[[FileUploaderWidget.fileuploader.dragorclick]]", "Drag your files here or click in this area");
 
   this.runtimeProperties = function () {
     return {
@@ -129,7 +129,7 @@ TW.Runtime.Widgets.fileuploader = function () {
     xhr.setRequestHeader('X-XSRF-TOKEN', 'TWX-XSRF-TOKEN-VALUE');
 
     xhr.upload.addEventListener("progress", function (evt) {
-      var percentComplete = Math.floor(100 * (uploadedSize + evt.loaded) / totalSize);
+      var percentComplete = Math.min(100, Math.floor(100 * (uploadedSize + evt.loaded) / totalSize));
       if (debugMode) {
         console.log("FileUploader - progress - percentComplete = " + percentComplete);
       }
