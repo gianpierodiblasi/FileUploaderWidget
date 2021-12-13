@@ -26,23 +26,6 @@ TW.IDE.Widgets.fileuploader = function () {
           'defaultValue': false,
           'description': 'true to activate the debug'
         },
-        'widgetType': {
-          'isVisible': true,
-          'baseType': 'STRING',
-          'isEditable': true,
-          'description': 'The type of widget to click to activate the upload',
-          'defaultValue': 'component',
-          'selectOptions': [
-            {value: 'component', text: 'Component'},
-            {value: 'container', text: 'Container'}
-          ]
-        },
-        'fileUploadCustomClass': {
-          'isVisible': true,
-          'baseType': 'STRING',
-          'isEditable': true,
-          'description': 'The CSS class to search the component/container to click to activate the upload'
-        },
         repositoryName: {
           description: "The repository where to save the files",
           isBindingTarget: true,
@@ -127,6 +110,7 @@ TW.IDE.Widgets.fileuploader = function () {
 
   this.widgetServices = function () {
     return {
+      'Open': {}
     };
   };
 
