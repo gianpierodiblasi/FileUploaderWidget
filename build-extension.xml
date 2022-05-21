@@ -13,8 +13,6 @@
   <property name="localization"   value="Localization" /> 
   <property name="src.dir"        value="${basedir}/src" /> 
   <property name="build.dir"      value="${user.home}/builds/${ant.project.name}/bin" /> 
-  <property name="minify.dir"     value="${user.home}/builds/${ant.project.name}/minify" /> 
-  <property name="custom.dir"     value="${user.home}/builds/${ant.project.name}/custom" /> 
   <property name="config.dir"     value="${basedir}/configfiles" /> 
   <property name="ui.dir"         value="${basedir}/${ui}" /> 
   <property name="lib.dir"        value="${basedir}/${lib}" /> 
@@ -22,7 +20,6 @@
   <property name="entity.dir"     value="${basedir}/Entities" /> 
   <property name="localization.dir"  value="${basedir}/${localization}" /> 
  
-  <property file="${user.home}/vendor-custom.txt"/> 
   <property file="extension.properties" /> 
  
   <!-- ExtensionPackage directory structure props --> 
@@ -33,8 +30,6 @@
  
   <!--  Extension file info --> 
   <property name="zip.file.name" value="${ant.project.name}.zip" /> 
-  <property name="minify-zip.file.name" value="${ant.project.name}-min.zip" /> 
-  <property name="minify-custom-zip.file.name" value="${ant.project.name}-min-custom.zip" /> 
   
   <tstamp> 
     <format property="NOW" pattern="yyyy-MM-dd HH:mm:ss" /> 
@@ -50,8 +45,6 @@
   <target name="clean"> 
     <delete dir="${build.dir}" /> 
     <delete dir="${zip.dir}" /> 
-    <delete dir="${minify.dir}" /> 
-    <delete dir="${custom.dir}" /> 
   </target> 
  
   <target name="init" depends="clean"> 
@@ -100,28 +93,6 @@
     </jar> 
   </target> 
  
-  <target name="copy-minify">
-    <copy todir="${minify.dir}">
-      <fileset dir="${basedir}" includes="${ui}/**/*.min.*" excludes="${ui}/**/jslibrary/*.*"/>
-      <fileset dir="${basedir}" includes="${ui}/**/*.png" />
-    </copy>  
-    
-    <move todir="${minify.dir}">
-      <fileset dir="${minify.dir}" includes="${ui}/**/*.min.*" />
-      <mapper>
-        <mapper type="regexp" from="(.*).min.(.*)" to="\1.\2" />
-      </mapper>
-    </move>
-  </target>
-  
-  <target name="metadata-custom">
-    <copy todir="${custom.dir}">
-      <fileset dir="${config.dir}" includes="metadata.xml" />
-    </copy>
-    
-    <replace file="${custom.dir}/metadata.xml" token="Accenture Italy - Industry X" value="${vendor-custom}"/>
-  </target>
-  
   <target name="package-extension" depends="build-jars"> 
     <zip destfile="${zip.dir}/${zip.file.name}"> 
       <mappedresources> 
@@ -133,47 +104,12 @@
  
       <zipfileset dir="${basedir}" includes="${entities}/**/*.xml" /> 
       <zipfileset dir="${basedir}" includes="${localization}/**/*.json" /> 
-      <zipfileset dir="${basedir}" includes="${ui}/**/*.*" excludes="${ui}/**/*.min.*,${ui}/**/jslibrary/*.*" /> 
-      <zipfileset dir="${basedir}" includes="${ui}/**/jslibrary/*.*" /> 
+      <zipfileset dir="${basedir}" includes="${ui}/**/*.*" /> 
       <zipfileset dir="${lib.dir}" includes="**/*.jar" prefix="${package.common.lib.dir}/"/> 
     </zip> 
   </target> 
    
-  <target name="package-extension-minify" depends="build-jars,copy-minify"> 
-    <zip destfile="${zip.dir}/${minify-zip.file.name}"> 
-      <mappedresources> 
-        <fileset dir="${build.dir}" includes="${extension.jar}" /> 
-        <globmapper from="*" to="${package.common.lib.dir}/*" /> 
-      </mappedresources> 
- 
-      <zipfileset dir="${config.dir}" includes="metadata.xml" /> 
- 
-      <zipfileset dir="${basedir}" includes="${entities}/**/*.xml" /> 
-      <zipfileset dir="${basedir}" includes="${localization}/**/*.json" />
-      <zipfileset dir="${minify.dir}" includes="**/*.*" /> 
-      <zipfileset dir="${basedir}" includes="${ui}/**/jslibrary/*.*" /> 
-      <zipfileset dir="${lib.dir}" includes="**/*.jar" prefix="${package.common.lib.dir}/"/> 
-    </zip> 
-  </target> 
-    
-  <target name="package-extension-minify-custom" depends="build-jars,copy-minify,metadata-custom"> 
-    <zip destfile="${zip.dir}/${minify-custom-zip.file.name}"> 
-      <mappedresources> 
-        <fileset dir="${build.dir}" includes="${extension.jar}" /> 
-        <globmapper from="*" to="${package.common.lib.dir}/*" /> 
-      </mappedresources> 
- 
-      <zipfileset dir="${custom.dir}" includes="metadata.xml" /> 
- 
-      <zipfileset dir="${basedir}" includes="${entities}/**/*.xml" /> 
-      <zipfileset dir="${basedir}" includes="${localization}/**/*.json" />
-      <zipfileset dir="${minify.dir}" includes="**/*.*" /> 
-      <zipfileset dir="${basedir}" includes="${ui}/**/jslibrary/*.*" /> 
-      <zipfileset dir="${lib.dir}" includes="**/*.jar" prefix="${package.common.lib.dir}/"/> 
-    </zip> 
-  </target> 
-  
-  <target name="build" depends="package-extension,package-extension-minify,package-extension-minify-custom"> 
+  <target name="build" depends="package-extension"> 
     <echo message="Building ${ant.project.name} extension package..."/> 
   </target> 
  
