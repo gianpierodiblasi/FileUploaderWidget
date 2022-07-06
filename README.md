@@ -21,6 +21,7 @@ This extension provides a widget to manage file upload. The file uploading can b
 - allowedFileTypes - STRING (default = ''): the allowed file types separated by commas and starting with a dot, eg. '.gif,.jpeg,.png', empty string to set no constraint on the type
 - maximumFileSize - NUMBER (default = 0): the maximum allowed file size in Mbytes, a value less than or equal to 0 to set no constraint on the size
 - progress - NUMBER (default = 0): the upload progress value (in percent)
+- folderSelection - BOOLEAN (default = false): true to allow folder selection
 
 ## Services
 - Open: service to trigger the file open dialog
