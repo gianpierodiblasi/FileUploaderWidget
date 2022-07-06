@@ -57,8 +57,17 @@ TW.Runtime.Widgets.fileuploader = function () {
     };
     uploadElement.onclick = function (event) {
       uploadFilesElement.setAttribute("accept", thisWidget.getProperty('allowedFileTypes'));
+      
       if (thisWidget.getProperty('allowMultipleFiles')) {
         uploadFilesElement.setAttribute("multiple", "multiple");
+      } else {
+        uploadFilesElement.removeAttribute("multiple");
+      }
+      
+      if (thisWidget.getProperty('folderSelection')) {
+        uploadFilesElement.setAttribute("webkitdirectory", "webkitdirectory");
+      } else {
+        uploadFilesElement.removeAttribute("webkitdirectory");
       }
 
       var evt = document.createEvent("MouseEvents");
@@ -104,7 +113,7 @@ TW.Runtime.Widgets.fileuploader = function () {
     for (var index = 0; index < filesToUpload.length; index++) {
       totalSize += filesToUpload[index].size;
 
-      var fullPath = path + (path.lastIndexOf('/') === path.length - 1 ? "" : "/") + filesToUpload[index].name;
+      var fullPath = path + (path.lastIndexOf('/') === path.length - 1 ? "" : "/") + (filesToUpload[index].webkitRelativePath ? filesToUpload[index].webkitRelativePath : filesToUpload[index].name);
       thisWidget.setProperty('fileName', filesToUpload[index].name);
       thisWidget.setProperty('fullPath', fullPath);
 
@@ -118,10 +127,13 @@ TW.Runtime.Widgets.fileuploader = function () {
 
   function upload() {
     var debugMode = thisWidget.getProperty('debugMode');
+    var path = thisWidget.getProperty('path');
+    path += (path.lastIndexOf('/') === path.length - 1 ? "" : "/");
+    path += filesToUpload[indexToUpload].webkitRelativePath ? filesToUpload[indexToUpload].webkitRelativePath.substring(0, filesToUpload[indexToUpload].webkitRelativePath.lastIndexOf("/")) : "";
 
     var data = new FormData();
     data.append('upload-repository-' + uid, thisWidget.getProperty('repositoryName'));
-    data.append('upload-path-' + uid, thisWidget.getProperty('path'));
+    data.append('upload-path-' + uid, path);
     data.append('upload-files-' + uid, filesToUpload[indexToUpload]);
 
     var xhr = new XMLHttpRequest();
@@ -213,7 +225,7 @@ TW.Runtime.Widgets.fileuploader = function () {
     var properties = [
       "debugMode",
       "repositoryName", "path",
-      "allowMultipleFiles", "allowedFileTypes", "maximumFileSize"
+      "allowMultipleFiles", "allowedFileTypes", "maximumFileSize", "folderSelection"
     ];
 
     if (properties.indexOf(updatePropertyInfo.TargetProperty) !== -1) {

@@ -103,6 +103,14 @@ TW.IDE.Widgets.fileuploader = function () {
           isBindingSource: true,
           defaultValue: 0,
           baseType: 'NUMBER'
+        },
+        'folderSelection': {
+          isBindingTarget: true,
+          'isVisible': true,
+          'baseType': 'BOOLEAN',
+          'isEditable': true,
+          'defaultValue': false,
+          'description': 'true to allow folder selection'
         }
       }
     };
